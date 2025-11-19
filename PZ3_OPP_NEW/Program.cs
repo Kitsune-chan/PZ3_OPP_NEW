@@ -44,8 +44,8 @@ public abstract class BinaryOperation : Expr
 
     public BinaryOperation(IExpr x_Var, IExpr y_Var)
     {
-        Left = x_Var ?? throw new ArgumentNullException(nameof(x_Var));
-        Right = y_Var ?? throw new ArgumentNullException(nameof(y_Var));
+        Left = x_Var ;
+        Right = y_Var;
     }
 }
 
@@ -56,8 +56,8 @@ public class Add : BinaryOperation
 
     public Add(IExpr x_var, IExpr y_var) : base(x_var, y_var)
     {
-        _Left = x_var ?? throw new ArgumentNullException(nameof(x_var));
-        _Right = y_var ?? throw new ArgumentNullException(nameof(y_var));
+        _Left = x_var;
+        _Right = y_var;
     }
 
     public override IEnumerable<string> Variables => _Left.Variables.Union(_Right.Variables);
@@ -103,7 +103,7 @@ public class Add : BinaryOperation
         return result;
     }
 
-    public override string ToString() => $"({_Left} + {_Right})";
+    public override string ToString() => $"({_Left} + ({_Right}))";
 }
 
 public class Subtract : BinaryOperation
@@ -113,8 +113,8 @@ public class Subtract : BinaryOperation
 
     public Subtract(IExpr x_var, IExpr y_var) : base(x_var, y_var)
     {
-        _Left = x_var ?? throw new ArgumentNullException(nameof(x_var));
-        _Right = y_var ?? throw new ArgumentNullException(nameof(y_var));
+        _Left = x_var;
+        _Right = y_var;
     }
 
     public override IEnumerable<string> Variables => _Left.Variables.Union(_Right.Variables);
@@ -170,8 +170,8 @@ public class Multiply : BinaryOperation
 
     public Multiply(IExpr x_var, IExpr y_var) : base(x_var, y_var)
     {
-        _Left = x_var ?? throw new ArgumentNullException(nameof(x_var));
-        _Right = y_var ?? throw new ArgumentNullException(nameof(y_var));
+        _Left = x_var;
+        _Right =    y_var;
     }
 
     public override IEnumerable<string> Variables => _Left.Variables.Union(_Right.Variables);
@@ -294,8 +294,8 @@ public class Divide : BinaryOperation
 
     public Divide(IExpr x_var, IExpr y_var) : base(x_var, y_var)
     {
-        _Left = x_var ?? throw new ArgumentNullException(nameof(x_var));
-        _Right = y_var ?? throw new ArgumentNullException(nameof(y_var));
+        _Left = x_var;
+        _Right = y_var;
     }
 
     public override IEnumerable<string> Variables => _Left.Variables.Union(_Right.Variables);
@@ -352,7 +352,7 @@ public abstract class UnaryOperation : Expr
 
     public UnaryOperation(IExpr oper)
     {
-        Oper = oper ?? throw new ArgumentNullException(nameof(oper));
+        Oper = oper;
     }
 
 }
@@ -398,7 +398,7 @@ public abstract class Function : Expr
 
     public Function(IExpr funk)
     {
-        Funk = funk ?? throw new ArgumentNullException(nameof(funk));
+        Funk = funk;
     }
 
 }
@@ -653,7 +653,7 @@ public class Polynomial : IExpr
 
     public Polynomial(IReadOnlyDictionary<string, double> coefficients)
     {
-        _coefficients = coefficients ?? throw new ArgumentNullException(nameof(coefficients));
+        _coefficients = coefficients;
     }
 
     public IEnumerable<string> Variables
