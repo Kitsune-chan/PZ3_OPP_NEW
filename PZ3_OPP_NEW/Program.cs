@@ -103,7 +103,7 @@ public class Add : BinaryOperation
         return result;
     }
 
-    public override string ToString() => $"({_Left} + ({_Right}))";
+    public override string ToString() => $"({_Left} + {_Right})";
 }
 
 public class Subtract : BinaryOperation
@@ -429,7 +429,7 @@ public class Constant : Expr
 
     public override string ToString()
     {
-        return _value.ToString();
+        return $"({_value.ToString()})";
     }
 }
 
