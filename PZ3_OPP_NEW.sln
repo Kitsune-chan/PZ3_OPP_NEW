@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11218.70 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PZ3_OPP_NEW", "PZ3_OPP_NEW\PZ3_OPP_NEW.csproj", "{ADC1E772-68DA-41CA-90C5-3F16287262C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{CEED1DBB-66FA-478E-B910-E081E74940E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ADC1E772-68DA-41CA-90C5-3F16287262C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADC1E772-68DA-41CA-90C5-3F16287262C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADC1E772-68DA-41CA-90C5-3F16287262C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEED1DBB-66FA-478E-B910-E081E74940E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEED1DBB-66FA-478E-B910-E081E74940E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEED1DBB-66FA-478E-B910-E081E74940E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEED1DBB-66FA-478E-B910-E081E74940E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
