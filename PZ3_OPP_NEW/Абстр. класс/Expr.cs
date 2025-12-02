@@ -22,6 +22,8 @@ namespace PZ3_OPP_NEW
         public static Expr operator +(Expr a, Expr b) => new Add(a, b);
         public static Expr operator *(Expr a, Expr b) => new Multiply(a, b);
         public static Expr operator /(Expr a, Expr b) => new Divide(a, b);
+        public static Expr operator ^(Expr a, Expr b) => new Degree(a, b);
+        public static Expr log(Expr a, Expr b) => new ILog(a, b);
         public static Expr operator -(Expr a) => new UnaryMinus(a);
         public abstract override string ToString();
     }

@@ -47,6 +47,10 @@ class Program
         Console.WriteLine("Тестирование вычисления коэффициентов полинома:");
         Console.WriteLine("==============================================");
 
+        var coefficients = (-((x + y)) * (x - y)).GetPolynomialCoefficients();
+
+        Console.WriteLine(string.Join("" ,(-((x + y)) * (x - y)).GetPolynomialCoefficients()));
+
         // Тест 2: Полином с несколькими переменными
         var expr2 = x * x + 2 * x * y + y * y;
         Console.WriteLine($"\nТест 2 - Полином двух переменных: {expr2}");
