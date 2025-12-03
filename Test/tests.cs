@@ -195,7 +195,7 @@ namespace Test
         }
     }
 
-    public class degreeАunctions
+    public class degreeFunctions
     {
         Expr x = new Variable("x");
         Expr y = new Variable("y");
@@ -220,8 +220,13 @@ namespace Test
             Assert.Equal(0, (c ^ unary1).PolynomialDegree);
             Assert.Equal(0, (c ^ c).PolynomialDegree);
             Assert.Equal(-1, (c ^ y).PolynomialDegree);
+<<<<<<< HEAD
+            Assert.Equal(27, (x ^ (y + z)).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 1, ["z"] = 2 }));
+            Assert.Equal(152.0/3.0, ((((x + y) ^ c) + (y ^ c)) / c).Compute(new Dictionary<string, double> { ["x"] = 2, ["y"] = 3 }));
+=======
             Assert.Equal(9, (x ^ y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(125, (x ^ c).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+>>>>>>> parent of d3b3ba1 (Добавила тестики часть 1)
 
             //expressions
             //1)
@@ -232,6 +237,31 @@ namespace Test
             Assert.Equal(2, ((x ^ 2) + (y ^ 2) - c).PolynomialDegree);
             Assert.Equal(22, ((x ^ 2) + (y ^ 2) - c).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 4 }));
             Assert.Equal(-125, (unary1 ^ c).Compute(new Dictionary<string, double> { }));
+
+            var basef = new Constant(1e-17);
+            var argumentf = new Constant(-2);
+            var func = new Degree(basef, argumentf);
+            var variables = new Dictionary<string, double>();
+
+       
+            var exception = Assert.Throws<ArgumentException>(
+                () => func.Compute(variables)
+            );
+
+            Assert.Contains("Ноль в отрицательной степени -2", exception.Message);
+
+            //
+            basef = new Constant(-2);
+            argumentf = new Constant(1.0/5.0);
+            func = new Degree(basef, argumentf);
+            variables = new Dictionary<string, double>();
+
+            // Act & Assert
+            exception = Assert.Throws<ArgumentException>(
+                () => func.Compute(variables)
+            );
+
+            Assert.Contains("Отрицательное число -2 в дробной степени", exception.Message);
 
         }
 
