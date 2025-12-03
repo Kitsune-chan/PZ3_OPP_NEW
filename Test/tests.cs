@@ -52,6 +52,7 @@ namespace Test
         [Fact]
         public void TestAddFunc() //свойства Add
         {
+            var funk = x + y;
             //base
             Assert.False((x + y).IsConstant);
             Assert.False((x + unary1).IsConstant);
@@ -65,6 +66,7 @@ namespace Test
             Assert.Equal(0, (unary1 + unary1).PolynomialDegree);
             Assert.Equal(5, (x + y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(0, (x + unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x + y)", funk.ToString());
 
         }
 
@@ -206,6 +208,9 @@ namespace Test
         [Fact]   
         public void TestDegreeFunc() //свойства Degree
         {
+
+            var funk1 = x ^ (0.5);
+            var funk2 = x ^ (2);
             //base
             Assert.False((x^(y + z)).IsConstant);
             Assert.True((c ^ unary1).IsConstant);
@@ -222,6 +227,8 @@ namespace Test
             Assert.Equal(-1, (c ^ y).PolynomialDegree);
             Assert.Equal(9, (x ^ y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(125, (x ^ c).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("Sqrt(x)", funk1.ToString());
+            Assert.Equal("x^(2)", funk2.ToString());
 
             //expressions
             //1)
@@ -352,6 +359,7 @@ namespace Test
             Assert.Equal("[x, -5]", string.Join("", (unary1 * x).GetPolynomialCoefficients()));
             Assert.Equal("[x, 1][y, 1][z, 1][w, -1]", string.Join("", (x + y + z - w).GetPolynomialCoefficients()));
             Assert.Equal($"[x, {1.0/6.0}][x^2, {1.0/3.0}]", string.Join("", (x / 6 + (x ^ 2) / 3).GetPolynomialCoefficients()));
+            Assert.Equal("[x, 5]", string.Join("", ((x * 2) + (3 * x)).GetPolynomialCoefficients()));
 
             var func = log(x, y) * z; 
 

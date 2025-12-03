@@ -14,8 +14,8 @@ namespace PZ3_OPP_NEW
         {
             get
             {
-                var baseVars = Left.Variables ?? Enumerable.Empty<string>();
-                var exponentVars = Right.Variables ?? Enumerable.Empty<string>();
+                var baseVars = Left.Variables;
+                var exponentVars = Right.Variables;
                 return baseVars.Concat(exponentVars).Distinct();
             }
         }
@@ -40,10 +40,7 @@ namespace PZ3_OPP_NEW
 
                         return isInteger && isNonNegative && Left.IsPolynomial;
                     }
-                    catch
-                    {
-                        return false;
-                    }
+                    finally { }
                 }
 
                 return false;
@@ -64,15 +61,9 @@ namespace PZ3_OPP_NEW
                     int exponentInt = (int)Math.Round(exponentValue);
                     int baseDegree = Left.PolynomialDegree;
 
-                    // Если основание - константа (степень 0), то результат тоже константа
-                    if (baseDegree == 0) return 0;
-
                     return baseDegree * exponentInt;
                 }
-                catch
-                {
-                    return 0;
-                }
+                finally { }
             }
         }
 
