@@ -368,7 +368,9 @@ namespace Test
                 () => func.GetPolynomialCoefficients()
             );
 
-            func = log(x, y) - z;
+            Assert.Contains("Выражение не является полиномом", exception.Message);
+
+            func = x / y;
 
             exception = Assert.Throws<InvalidOperationException>(
                 () => func.GetPolynomialCoefficients()
@@ -376,7 +378,7 @@ namespace Test
 
             Assert.Contains("Выражение не является полиномом", exception.Message);
 
-            func = x / y;
+            func = (c / x) ^ y ;
 
             exception = Assert.Throws<InvalidOperationException>(
                 () => func.GetPolynomialCoefficients()
