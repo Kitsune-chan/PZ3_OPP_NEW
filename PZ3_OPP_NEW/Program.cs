@@ -208,12 +208,12 @@ class Program
         Console.WriteLine($"Вычисление при x=2, y=3, z=4: {expr17.Compute(new Dictionary<string, double> { ["x"] = 2, ["y"] = 3, ["z"] = 4 })} (ожидается: 24)");
 
         // Тест 8: Отрицательная степень (НЕ полином)
-        var expr18 = new Degree(x, new Constant(-2));
+        var expr18 = new Degree(x, new Constant(0));
         Console.WriteLine($"\nТест 8 - Отрицательная степень: {expr18}");
         Console.WriteLine($"Переменные: [{string.Join(", ", expr18.Variables)}] (ожидается: [\"x\"])");
         Console.WriteLine($"Является константой: {expr18.IsConstant} (ожидается: False)");
         Console.WriteLine($"Является полиномом: {expr18.IsPolynomial} (ожидается: False)");
-        Console.WriteLine($"Степень полинома: {expr18.PolynomialDegree} (ожидается: -1)");
+        Console.WriteLine($"Степень полинома: {string.Join("" ,expr18.GetPolynomialCoefficients())} (ожидается: -1)");
 
         // Тест 9: Дробная степень (НЕ полином)
         var expr19 = new Degree(x, new Constant(1.5));
