@@ -220,13 +220,8 @@ namespace Test
             Assert.Equal(0, (c ^ unary1).PolynomialDegree);
             Assert.Equal(0, (c ^ c).PolynomialDegree);
             Assert.Equal(-1, (c ^ y).PolynomialDegree);
-<<<<<<< HEAD
-            Assert.Equal(27, (x ^ (y + z)).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 1, ["z"] = 2 }));
-            Assert.Equal(152.0/3.0, ((((x + y) ^ c) + (y ^ c)) / c).Compute(new Dictionary<string, double> { ["x"] = 2, ["y"] = 3 }));
-=======
             Assert.Equal(9, (x ^ y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(125, (x ^ c).Compute(new Dictionary<string, double> { ["x"] = 5 }));
->>>>>>> parent of d3b3ba1 (Добавила тестики часть 1)
 
             //expressions
             //1)
