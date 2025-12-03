@@ -352,6 +352,7 @@ namespace Test
             Assert.Equal("[x, -5]", string.Join("", (unary1 * x).GetPolynomialCoefficients()));
             Assert.Equal("[x, 1][y, 1][z, 1][w, -1]", string.Join("", (x + y + z - w).GetPolynomialCoefficients()));
             Assert.Equal($"[x, {1.0/6.0}][x^2, {1.0/3.0}]", string.Join("", (x / 6 + (x ^ 2) / 3).GetPolynomialCoefficients()));
+            Assert.Equal($"[, 1]", string.Join("", (x ^ 0).GetPolynomialCoefficients()));
 
             var func = log(x, y) * z; 
 
