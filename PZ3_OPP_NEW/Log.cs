@@ -14,8 +14,8 @@ namespace PZ3_OPP_NEW
         {
             get
             {
-                var baseVars = Left.Variables ?? Enumerable.Empty<string>();
-                var argumentVars = Right.Variables ?? Enumerable.Empty<string>();
+                var baseVars = Left.Variables;
+                var argumentVars = Right.Variables;
                 return baseVars.Concat(argumentVars).Distinct();
             }
         }
