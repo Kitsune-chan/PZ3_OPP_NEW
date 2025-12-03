@@ -155,7 +155,7 @@ namespace Test
             Assert.Equal(18, ((x + y) * (x / z)).Compute(new Dictionary<string, double> { ["x"] = 4, ["y"] = 5, ["z"] = 2 }));
             Assert.Equal(12, ((x + y) * (x / c)).Compute(new Dictionary<string, double> { ["x"] = 4, ["y"] = 5, ["z"] = 2 }));
 
-            var func = x / 0; // Только логарифм
+            var func = x / 0.0; // Только логарифм
 
             // Act & Assert
             var exception = Assert.Throws<DivideByZeroException>(
@@ -164,6 +164,11 @@ namespace Test
 
             Assert.Contains("Деление на ноль", exception.Message);
 
+            exception = Assert.Throws<DivideByZeroException>(
+                () => func.Compute(new Dictionary<string, double> { })
+            );
+
+            Assert.Contains("Деление на ноль", exception.Message);
 
         }
 
