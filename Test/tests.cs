@@ -74,6 +74,7 @@ namespace Test
         [Fact]
         public void TestSubtractFunc() //свойства Subtract
         {
+            var funk = x - y;
             //base
             Assert.False((x - y).IsConstant);
             Assert.False((x - unary1).IsConstant);
@@ -87,12 +88,14 @@ namespace Test
             Assert.Equal(0, (unary1 - unary1).PolynomialDegree);
             Assert.Equal(1, (x - y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(10, (x - unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x - y)", funk.ToString());
 
         }
 
         [Fact]
         public void TestMultiplyFunc() //свойства Multiply
         {
+            var funk = x * y;
             //base
             Assert.False((x * y).IsConstant);
             Assert.False((x * unary1).IsConstant);
@@ -106,6 +109,7 @@ namespace Test
             Assert.Equal(0, (unary1 * unary1).PolynomialDegree);
             Assert.Equal(6, (x * y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(-25, (x * unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x * y)", funk.ToString());
 
             //expressions
             //1)
@@ -290,6 +294,7 @@ namespace Test
             Assert.Equal(18, (log(c, 9) * (x ^ y)).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
 
             var logExpr = log(x, y);
+            Assert.Equal("log[x](y)", logExpr.ToString());
 
             // Act & Assert
             var exception = Assert.Throws<InvalidOperationException>(
