@@ -47,8 +47,7 @@ namespace PZ3_OPP_NEW
 
             foreach ((string key, double coefficient) in leftCoeffs)
             {
-                if (!result.TryAdd(key, coefficient))
-                    result[key] += coefficient;
+                result.Add(key, coefficient);
             }
 
             foreach ((string key, double coefficient) in rightCoeffs)

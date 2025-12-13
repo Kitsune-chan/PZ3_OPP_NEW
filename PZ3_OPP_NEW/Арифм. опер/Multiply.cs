@@ -87,8 +87,7 @@ namespace PZ3_OPP_NEW
 
             foreach ((string key, int coefficient) in vars1)
             {
-                if (!resultVars.TryAdd(key, coefficient))
-                    resultVars[key] += coefficient;
+                resultVars.Add(key, coefficient);
             }
 
             foreach ((string key, int coefficient) in vars2)

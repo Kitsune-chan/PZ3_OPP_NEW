@@ -12,7 +12,7 @@ namespace PZ3_OPP_NEW
 
         public Variable(string name) { _name = name; }
 
-        public static implicit operator Variable(string name) => new Variable(name);
+        //public static implicit operator Variable(string name) => new Variable(name);
 
         public override IEnumerable<string> Variables => [_name];
 

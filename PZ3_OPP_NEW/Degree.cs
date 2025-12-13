@@ -91,29 +91,26 @@ namespace PZ3_OPP_NEW
                 throw new InvalidOperationException("Выражение не является полиномом");
 
             // Для степеней с целым неотрицательным показателем
-            if (Right is Constant constExponent)
+            var constExponent = Right;
+            double exponentValue = constExponent.Compute(new Dictionary<string, double>());
+            int exponentInt = (int)Math.Round(exponentValue);
+
+            if (exponentInt == 0)
             {
-                double exponentValue = constExponent.Compute(new Dictionary<string, double>());
-                int exponentInt = (int)Math.Round(exponentValue);
-
-                if (exponentInt == 0)
-                {
-                    return new Dictionary<string, double> { { "", 1.0 } };
-                }
-
-                // Возводим полином в степень путем многократного умножения
-                var result = Left.GetPolynomialCoefficients();
-
-                for (int i = 1; i < exponentInt; i++)
-                {
-                    var temp = new Multiply(new Polynomial(result), new Polynomial(Left.GetPolynomialCoefficients()));
-                    result = temp.GetPolynomialCoefficients();
-                }
-
-                return result;
+                return new Dictionary<string, double> { { "", 1.0 } };
             }
 
-            throw new InvalidOperationException("Невозможно вычислить коэффициенты для данной степени");
+            // Возводим полином в степень путем многократного умножения
+            var result = Left.GetPolynomialCoefficients();
+
+            for (int i = 1; i < exponentInt; i++)
+            {
+                var temp = new Multiply(new Polynomial(result), new Polynomial(Left.GetPolynomialCoefficients()));
+                result = temp.GetPolynomialCoefficients();
+            }
+
+            return result;
+
         }
 
         public override string ToString()
