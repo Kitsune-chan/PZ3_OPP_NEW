@@ -75,12 +75,14 @@ namespace Test
             Assert.Equal(5, (x + y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(0, (x + unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
             Assert.Equal("(x + y)", funk.ToString());
+            Assert.Equal(-1, (((x ^ (-1)) + (x ^ (-1))).PolynomialDegree));
 
         }
 
         [Fact]
         public void TestSubtractFunc() //свойства Subtract
         {
+            var funk = x - y;
             //base
             Assert.False((x - y).IsConstant);
             Assert.False((x - unary1).IsConstant);
@@ -94,12 +96,14 @@ namespace Test
             Assert.Equal(0, (unary1 - unary1).PolynomialDegree);
             Assert.Equal(1, (x - y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(10, (x - unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x - y)", funk.ToString());
 
         }
 
         [Fact]
         public void TestMultiplyFunc() //свойства Multiply
         {
+            var funk = x * y;
             //base
             Assert.False((x * y).IsConstant);
             Assert.False((x * unary1).IsConstant);
@@ -114,6 +118,7 @@ namespace Test
             Assert.Equal(0, (unary1 * unary1).PolynomialDegree);
             Assert.Equal(6, (x * y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(-25, (x * unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x * y)", funk.ToString());
 
             //expressions
             //1)
@@ -134,6 +139,7 @@ namespace Test
         [Fact]
         public void TestDivideFunc() //свойства Divide
         {
+            var funk = x / 4;
             //base
             Assert.False((x / y).IsConstant);
             Assert.False((x / unary1).IsConstant);
@@ -148,6 +154,7 @@ namespace Test
             Assert.Equal(0, (unary1 / unary1).PolynomialDegree);
             Assert.Equal(1.5, (x / y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(-1, (x / unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("(x / (4))", funk.ToString());
 
             //expressions
             //1)
@@ -292,6 +299,7 @@ namespace Test
             Assert.Equal(18, (log(c, 9) * (x ^ y)).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
 
             var logExpr = log(x, y);
+            Assert.Equal("log[x](y)", logExpr.ToString());
 
             var exception = Assert.Throws<InvalidOperationException>(
                 () => logExpr.GetPolynomialCoefficients()
@@ -365,10 +373,13 @@ namespace Test
             Assert.Equal("[x, -5]", string.Join("", (unary1 * x).GetPolynomialCoefficients()));
             Assert.Equal("[x, 1][y, 1][z, 1][w, -1]", string.Join("", (x + y + z - w).GetPolynomialCoefficients()));
             Assert.Equal($"[x, {1.0/6.0}][x^2, {1.0/3.0}]", string.Join("", (x / 6 + (x ^ 2) / 3).GetPolynomialCoefficients()));
-            Assert.Equal($"[, 1]", string.Join("", (x ^ 0).GetPolynomialCoefficients()));
+
             Assert.Equal("[x, 5]", string.Join("", ((x * 2) + (3 * x)).GetPolynomialCoefficients()));
             Assert.Equal("[x, -5]", string.Join("", (-((x * 2) + (3 * x))).GetPolynomialCoefficients()));
             Assert.Equal("[y, 1]", string.Join("", ((2 * y) - y).GetPolynomialCoefficients()));
+
+            Assert.Equal($"[, 1]", string.Join("", (x ^ 0).GetPolynomialCoefficients()));
+
 
             var func = log(x, y) * z; 
             var exception = Assert.Throws<InvalidOperationException>(
