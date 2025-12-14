@@ -97,6 +97,7 @@ namespace Test
             Assert.Equal(1, (x - y).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(10, (x - unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
             Assert.Equal("(x - y)", funk.ToString());
+            Assert.Equal(-1, ((x^(-2)) - (y^(-4))).PolynomialDegree);
 
         }
 
@@ -190,6 +191,7 @@ namespace Test
         [Fact]
         public void TestUnaryMinusFunc() //свойства UnaryMinus
         {
+            var funk = -(x / 4); 
             //base
             Assert.False((-x).IsConstant);
             Assert.True((-unary1).IsConstant);
@@ -199,6 +201,7 @@ namespace Test
             Assert.Equal(1, (x - (-y)).PolynomialDegree);
             Assert.Equal(5, (x - (-y)).Compute(new Dictionary<string, double> { ["x"] = 3, ["y"] = 2 }));
             Assert.Equal(1, ((-x) / unary1).Compute(new Dictionary<string, double> { ["x"] = 5 }));
+            Assert.Equal("-((x / (4)))", funk.ToString());
 
             //expressions
             //1)
@@ -419,7 +422,6 @@ namespace Test
             Assert.Contains("Выражение не является полиномом", exception.Message);
         }
     }
-
 
     public class PolynomialClassTests
     {
@@ -983,6 +985,7 @@ namespace Test
 
             Assert.Equal("-0,75*x + 2,25", result);
         }
+
     }
 
 }
